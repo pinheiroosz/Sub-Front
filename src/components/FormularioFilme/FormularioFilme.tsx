@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Filme } from "../../types/Filme";
 import styles from "./FormularioFilme.module.css";
 
 interface FormularioFilmeProps {
   onSalvar: (filme: Omit<Filme, "id">) => void;
+  filmeEdicao?: Filme | null;
 }
 
-const FormularioFilme: React.FC<FormularioFilmeProps> = ({ onSalvar }) => {
+const FormularioFilme: React.FC<FormularioFilmeProps> = ({ onSalvar, filmeEdicao }) => {
   const [titulo, setTitulo] = useState("");
   const [ano, setAno] = useState("");
   const [poster, setPoster] = useState("");
   const [erro, setErro] = useState("");
+
+  useEffect(() => {
+    if (filmeEdicao) {
+      setTitulo(filmeEdicao.titulo);
+      setAno(filmeEdicao.ano.toString());
+      setPoster(filmeEdicao.poster);
+    } else {
+      setTitulo("");
+      setAno("");
+      setPoster("");
+    }
+  }, [filmeEdicao]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,14 +33,11 @@ const FormularioFilme: React.FC<FormularioFilmeProps> = ({ onSalvar }) => {
     }
     setErro("");
     onSalvar({ titulo, ano: Number(ano), poster });
-    setTitulo("");
-    setAno("");
-    setPoster("");
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.titulo}>Adicionar Filme</h2>
+      <h2 className={styles.titulo}>{filmeEdicao ? "Editar Filme" : "Adicionar Filme"}</h2>
       <input
         className={styles.input}
         type="text"

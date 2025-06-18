@@ -1,39 +1,87 @@
 .carrosselContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
-  margin-top: 32px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding-bottom: 24px;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  align-items: flex-start;
 }
 
 .cardAdd {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 16px;
+  background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+  padding: 2rem 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 256px;
-  height: 360px;
+  width: 22vw;
+  height: 40vw;
+  min-width: 200px;
+  min-height: 300px;
   cursor: pointer;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.25s, transform 0.18s, border 0.18s;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
 }
 .cardAdd:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 16px 48px 0 #000a, 0 2px 8px #0004;
+  transform: scale(1.045) translateY(-4px);
+  border: 2px solid #fff;
+  z-index: 2;
 }
 .iconeMais {
   font-size: 4rem;
-  color: #888;
-  margin-bottom: 12px;
+  color: #fff;
+  margin-bottom: 1rem;
   user-select: none;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: background 0.18s, color 0.18s;
+}
+.cardAdd:hover .iconeMais {
+  background: #fff;
+  color: #ff512f;
 }
 .textoAdd {
-  font-size: 1.1rem;
-  color: #444;
+  font-size: 1.2rem;
+  color: #fff;
   text-align: center;
+  font-weight: 500;
+  margin-top: 0.7rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px #000a;
+}
+
+@media (max-width: 900px) {
+  .carrosselContainer {
+    gap: 0.5rem;
+    padding: 0 8px;
+  }
+  .cardAdd {
+    width: 95vw;
+    height: 60vw;
+    max-width: 98vw;
+    max-height: 340px;
+    min-width: 140px;
+    min-height: 180px;
+    padding: 0.7rem;
+  }
+  .iconeMais {
+    font-size: 2.5rem;
+    width: 54px;
+    height: 54px;
+  }
 }

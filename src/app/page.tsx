@@ -1,49 +1,12 @@
 'use client';
-import { useEffect, useState } from "react";
-import axios from "axios";
-import CarrosselFilmes from "../components/CarrosselFilmes/CarrosselFilmes";
-import Modal from "../components/Modal/Modal";
-import FormularioFilme from "../components/FormularioFilme/FormularioFilme";
-import { Filme } from "../types/Filme";
-import styles from "./page.module.css";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
+// Página inicial: redireciona automaticamente para /catalogo
 export default function Home() {
-  const [filmes, setFilmes] = useState<Filme[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [erro, setErro] = useState("");
-  const [modalAberto, setModalAberto] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
-    axios
-      .get<Filme[]>("http://localhost:3001/filmes")
-      .then((res) => {
-        setFilmes(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setErro("Erro ao carregar filmes.");
-        setLoading(false);
-        console.error(err);
-      });
-  }, []);
-
-  const adicionarFilme = (novoFilme: Omit<Filme, "id">) => {
-    axios.post<Filme>("http://localhost:3001/filmes", novoFilme).then((res) => {
-      setFilmes((prev) => [...prev, res.data]);
-      setModalAberto(false);
-    });
-  };
-
-  if (loading) return <div className="text-center mt-8">Carregando...</div>;
-  if (erro) return <div className="text-center mt-8 text-red-500">{erro}</div>;
-
-  return (
-    <main className="flex flex-col items-center p-8 gap-8">
-      <h1 className="text-3xl font-bold mb-4">Catálogo de Filmes</h1>
-      <CarrosselFilmes filmes={filmes} onAbrirModal={() => setModalAberto(true)} />
-      <Modal aberto={modalAberto} onClose={() => setModalAberto(false)}>
-        <FormularioFilme onSalvar={adicionarFilme} />
-      </Modal>
-    </main>
-  );
+    router.replace("/catalogo");
+  }, [router]);
+  return null;
 }

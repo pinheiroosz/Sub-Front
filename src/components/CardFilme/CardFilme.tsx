@@ -4,9 +4,11 @@ import styles from "./CardFilme.module.css";
 
 interface CardFilmeProps {
   filme: Filme;
+  onEditar?: (filme: Filme) => void;
+  onExcluir?: (filme: Filme) => void;
 }
 
-const CardFilme: React.FC<CardFilmeProps> = ({ filme }) => {
+const CardFilme: React.FC<CardFilmeProps> = ({ filme, onEditar, onExcluir }) => {
   return (
     <div className={styles.card}>
       <img
@@ -16,6 +18,14 @@ const CardFilme: React.FC<CardFilmeProps> = ({ filme }) => {
       />
       <h2 className={styles.titulo}>{filme.titulo}</h2>
       <p className={styles.ano}>Ano: {filme.ano}</p>
+      <div className={styles.acoes}>
+        {onEditar && (
+          <button className={styles.btnEditar} onClick={() => onEditar(filme)} title="Editar filme">✏️</button>
+        )}
+        {onExcluir && (
+          <button className={styles.btnExcluir} onClick={() => onExcluir(filme)} title="Excluir filme">🗑️</button>
+        )}
+      </div>
     </div>
   );
 };
