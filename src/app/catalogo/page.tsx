@@ -6,6 +6,8 @@ import Modal from "../../components/Modal/Modal";
 import FormularioFilme from "../../components/FormularioFilme/FormularioFilme";
 import { Filme } from "../../types/Filme";
 import styles from "../page.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Catalogo() {
   const [filmes, setFilmes] = useState<Filme[]>([]);
@@ -33,6 +35,7 @@ export default function Catalogo() {
     axios.post<Filme>("http://localhost:3001/filmes", novoFilme).then((res) => {
       setFilmes((prev) => [...prev, res.data]);
       setModalAberto(false);
+      toast.success("Filme adicionado com sucesso!");
     });
   };
 
@@ -47,15 +50,15 @@ export default function Catalogo() {
       setFilmes((prev) => prev.map(f => f.id === filmeEditando.id ? res.data : f));
       setModalEdicao(false);
       setFilmeEditando(null);
+      toast.success("Filme editado com sucesso!");
     });
   };
 
   const excluirFilme = (filme: Filme) => {
-    if (window.confirm(`Deseja realmente excluir o filme "${filme.titulo}"?`)) {
-      axios.delete(`http://localhost:3001/filmes/${filme.id}`).then(() => {
-        setFilmes((prev) => prev.filter(f => f.id !== filme.id));
-      });
-    }
+    axios.delete(`http://localhost:3001/filmes/${filme.id}`).then(() => {
+      setFilmes((prev) => prev.filter(f => f.id !== filme.id));
+      toast.success("Filme excluído com sucesso!");
+    });
   };
 
   if (loading) return <div className="text-center mt-8">Carregando...</div>;
@@ -83,6 +86,7 @@ export default function Catalogo() {
       <Modal aberto={modalEdicao} onClose={() => { setModalEdicao(false); setFilmeEditando(null); }}>
         <FormularioFilme onSalvar={salvarEdicao} filmeEdicao={filmeEditando} />
       </Modal>
+      <ToastContainer position="top-right" autoClose={2500} hideProgressBar={false} newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
     </main>
   );
 }

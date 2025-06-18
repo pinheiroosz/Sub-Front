@@ -1,13 +1,13 @@
 {
   "filmes": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Interestelar",
       "ano": 2014,
       "poster": "https://cinemaeargumento.com/wp-content/uploads/2014/11/interstellarposter.jpg?w=584"
     },
     {
-      "id": 2,
+      "id": "2",
       "titulo": "Samurai",
       "ano": 1962,
       "poster": "https://m.media-amazon.com/images/S/pv-target-images/5023904a4c0e525ea461ed8de988657a88b51e6fe04256b75fba585479ac0fe8.jpg"
