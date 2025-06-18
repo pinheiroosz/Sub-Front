@@ -1,0 +1,29 @@
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 256px;
+}
+
+.poster {
+  width: 160px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.titulo {
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ano {
+  color: #666;
+}

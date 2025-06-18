@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.titulo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.botao {
+  background: #171717;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.botao:hover {
+  background: #333;
+}
+
+.erro {
+  color: #c00;
+  font-size: 0.95rem;
+  text-align: center;
+}
