@@ -1,20 +1,33 @@
 import React from "react";
 import { Filme } from "../types/Filme";
+import styles from "./CardFilme/CardFilme.module.css";
 
 interface CardFilmeProps {
   filme: Filme;
+  onEditar?: (filme: Filme) => void;
+  onExcluir?: (filme: Filme) => void;
 }
 
-const CardFilme: React.FC<CardFilmeProps> = ({ filme }) => {
+const CardFilme: React.FC<CardFilmeProps> = ({ filme, onEditar, onExcluir }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center gap-2 w-64">
+    <div className={styles.card}>
       <img
         src={filme.poster}
         alt={filme.titulo}
-        className="w-40 h-60 object-cover rounded mb-2"
+        className={styles.poster}
       />
-      <h2 className="text-lg font-bold text-center">{filme.titulo}</h2>
-      <p className="text-gray-600">Ano: {filme.ano}</p>
+      <h2 className={styles.titulo}>{filme.titulo}</h2>
+      <p className={styles.ano}>Ano: {filme.ano}</p>
+      {(onEditar || onExcluir) && (
+        <div className={styles.acoes}>
+          {onEditar && (
+            <button className={styles.btnEditar} onClick={() => onEditar(filme)} title="Editar filme">✏️</button>
+          )}
+          {onExcluir && (
+            <button className={styles.btnExcluir} onClick={() => onExcluir(filme)} title="Excluir filme">🗑️</button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

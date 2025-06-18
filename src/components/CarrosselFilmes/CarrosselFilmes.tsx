@@ -12,9 +12,11 @@ interface CarrosselFilmesProps {
 
 const CarrosselFilmes: React.FC<CarrosselFilmesProps> = ({ filmes, onAbrirModal, onEditar, onExcluir }) => {
   return (
-    <div className={styles.carrosselContainer} style={{ display: 'flex', justifyContent: 'center', gap: 32, flexWrap: 'wrap', marginTop: 32 }}>
+    <div className={styles.horizontalScrollContainer}>
       {filmes.map((filme) => (
-        <CardFilme key={filme.id} filme={filme} onEditar={onEditar} onExcluir={onExcluir} />
+        <div key={filme.id} className={styles.cardWrapper}>
+          <CardFilme filme={filme} onEditar={onEditar} onExcluir={onExcluir} />
+        </div>
       ))}
       <div className={styles.cardAdd} onClick={onAbrirModal} title="Adicionar novo filme">
         <span className={styles.iconeMais}>+</span>

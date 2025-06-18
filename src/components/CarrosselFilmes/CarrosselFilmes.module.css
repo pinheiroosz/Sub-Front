@@ -12,7 +12,7 @@
 }
 
 .cardAdd {
-  background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+  background: linear-gradient(135deg, #0004 0%, rgb(2, 2, 56) 100%);
   border-radius: 22px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.28);
   padding: 2rem 1.2rem;
@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   width: 22vw;
-  height: 40vw;
+  height: 50vw;
   min-width: 200px;
   min-height: 300px;
   cursor: pointer;
@@ -43,8 +43,8 @@
   user-select: none;
   background: rgba(255,255,255,0.08);
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +53,7 @@
 }
 .cardAdd:hover .iconeMais {
   background: #fff;
-  color: #ff512f;
+  color: rgb(89, 89, 223);
 }
 .textoAdd {
   font-size: 1.2rem;
@@ -85,3 +85,38 @@
     height: 54px;
   }
 }
+
+.horizontalScrollContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem 1.5rem;
+  scroll-behavior: smooth;
+  align-items: stretch;
+  min-height: 320px;
+}
+.horizontalScrollContainer::-webkit-scrollbar {
+  height: 12px;
+  background: #181818;
+}
+.horizontalScrollContainer::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 8px;
+}
+.cardWrapper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Remove carousel antigo */
+.netflixCarousel, .slick-slider, .slick-next, .slick-prev, .slick-slide > div {
+  all: unset;
+}
+
+

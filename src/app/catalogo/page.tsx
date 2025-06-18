@@ -62,14 +62,21 @@ export default function Catalogo() {
   if (erro) return <div className="text-center mt-8 text-red-500">{erro}</div>;
 
   return (
-    <main className="flex flex-col items-center p-8 gap-8">
-      <h1 className="text-3xl font-bold mb-4">Catálogo de Filmes</h1>
-      <CarrosselFilmes
-        filmes={filmes}
-        onAbrirModal={() => setModalAberto(true)}
-        onEditar={abrirEdicao}
-        onExcluir={excluirFilme}
-      />
+    <main className={styles.catalogoMain}>
+      <header className={styles.netflixHeader}>
+        <span className={styles.netflixLogo}>Papagaio<span className={styles.netflixLogoRed}>Flix</span></span>
+      </header>
+      <section className={styles.netflixSection}>
+        <h2 className={styles.netflixSectionTitle}>Filmes em destaque</h2>
+        <div className={styles.netflixCarouselWrapper}>
+          <CarrosselFilmes
+            filmes={filmes}
+            onAbrirModal={() => setModalAberto(true)}
+            onEditar={abrirEdicao}
+            onExcluir={excluirFilme}
+          />
+        </div>
+      </section>
       <Modal aberto={modalAberto} onClose={() => setModalAberto(false)}>
         <FormularioFilme onSalvar={adicionarFilme} />
       </Modal>
